@@ -17,12 +17,22 @@ void markAttendence(){
     }
 }
 
+int calculateDailyWages(int wagePerHour , int workingHour){
+    return wagePerHour*workingHour;
+}
+
 int main()
 {
     cout << "Welcome to Employee-Wage-computation" << endl ;
 
     // attendence 
     markAttendence();    
+
+    // calculate daily wages
+    int wagePerHour = 20;
+    int workingHour = 8;
+    int dailyWage = calculateDailyWages(wagePerHour,workingHour);
+    cout<< "daily wage of employee is :"<<dailyWage<<endl;
 
     return 0;
 }
