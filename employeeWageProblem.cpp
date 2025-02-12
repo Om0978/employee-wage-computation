@@ -32,6 +32,9 @@ int main()
     const int totalDays = 20; // total working-days of month
     int totalFullTimeEmployeeWage = 0;
     int totalPartTimeEmployeeWage = 0;
+    int maxWorkingHours = 100;
+    int totalWorkingHours = 0;
+
 
     for (int i = 1; i <= totalDays; i++)
     {
@@ -44,6 +47,10 @@ int main()
         int workingHour = 0;
         int partTimeWage = 0;
 
+        if(totalWorkingHours>=maxWorkingHours){
+            cout<<"max working hours reached";
+            break;
+        }
         switch (attendance)
         {
         case 0: // employee is absent
@@ -53,17 +60,30 @@ int main()
         case 1: // employee is present
 
             // calculate daily wages
-            dailyWage = calculateDailyWages(wagePerHour, 8); // for fullTime employee
-            // cout << "daily wage of fullTime employee is :" << dailyWage << endl;
+            int fullTimeWorkingHr=8;
             workingHour = getRandomWorkingHour(); // for partTime employee
-            partTimeWage = calculateDailyWages(wagePerHour, workingHour);
-            // cout << "partTime employee work for " << workingHour << "hr" << endl;
-            // cout << "partTime wage of employee is : " << partTimeWage << endl;
+
+            if(totalWorkingHours+fullTimeWorkingHr>maxWorkingHours){ // calculate wage for remaining days 
+                fullTimeWorkingHr=maxWorkingHours-totalWorkingHours;
+                dailyWage = calculateDailyWages(wagePerHour, fullTimeWorkingHr);
+                break;
+            }
+
+            if(totalWorkingHours<maxWorkingHours-8){
+                dailyWage = calculateDailyWages(wagePerHour, fullTimeWorkingHr); // for fullTime employee
+                totalWorkingHours+=8;
+                // cout << "daily wage of fullTime employee is :" << dailyWage << endl;
+            }
+
+            if(totalWorkingHours<maxWorkingHours-workingHour){
+                totalWorkingHours+=workingHour;
+                partTimeWage = calculateDailyWages(wagePerHour, workingHour);
+                // cout << "partTime employee work for " << workingHour << "hr" << endl;
+                // cout << "partTime wage of employee is : " << partTimeWage << endl;
+            }
+
             totalFullTimeEmployeeWage+=dailyWage;
             totalPartTimeEmployeeWage+=partTimeWage;
-            break;
-        default:
-            //cout << "invalid attendance value";
             break;
         }
 
