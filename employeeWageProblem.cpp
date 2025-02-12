@@ -28,12 +28,11 @@ int main()
         // calculate daily wages
         int wagePerHour = 20;
         int workingHour = getRandomWorkingHour();
-
-            int dailyWage = calculateDailyWages(wagePerHour,8);
-            cout<< "daily wage of fullTime employee is :"<<dailyWage<<endl;
-            int partTimeWage = calculateDailyWages(wagePerHour,workingHour);
-            cout<<"partTime employee work for "<<workingHour<<"hr"<<endl;
-            cout<<"partTime wage of employee is : "<<partTimeWage<<endl;
+        int dailyWage = calculateDailyWages(wagePerHour,8);
+        cout<< "daily wage of fullTime employee is :"<<dailyWage<<endl;
+        int partTimeWage = calculateDailyWages(wagePerHour,workingHour);
+        cout<<"partTime employee work for "<<workingHour<<"hr"<<endl;
+        cout<<"partTime wage of employee is : "<<partTimeWage<<endl;
     }
     else {
         cout << "Employee is absent " << endl ;
